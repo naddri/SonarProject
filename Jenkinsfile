@@ -38,20 +38,20 @@ pipeline {
         }
 // Check the SonarQube analysis stage for the correct project key and name
         stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv("${env.SONARQUBE_SERVER}") {
-                    bat """
-                        sonar-scanner ^
-                        -Dsonar.projectKey=BMI_CL ^
-                        -Dsonar.sources=src ^
-                        -Dsonar.projectName=BMI_CL ^
-                        -Dsonar.host.url=http://localhost:9000 ^
-                        -Dsonar.login=${env.SONAR_TOKEN} ^
-                        -Dsonar.java.binaries=target/classes
-                    """
-                }
-            }
+    steps {
+        withCredentials([string(
+            credentialsId: 'SONAR_TOKEN',
+            variable: 'SONAR_TOKEN'
+        )]) {
+            bat '''
+                mvn sonar:sonar ^
+                -Dsonar.projectKey=demo1 ^
+                -Dsonar.host.url=http://localhost:9000 ^
+                -Dsonar.token=%SONAR_TOKEN%
+            '''
         }
+    }
+}
 
         stage('Build Docker Image') {
             steps {
