@@ -50,14 +50,19 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    def app = docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
-                    env.BUILT_IMAGE = app.id  // Optional: store image ID for reuse
-                }
-            }
+        
+stage('Build Docker Image') {
+    steps {
+        bat 'where docker'
+        bat 'docker --version'
+        bat 'docker info'
+
+        script {
+            docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
         }
+    }
+}
+
 
         stage('Push Docker Image to Docker Hub') {
             steps {
