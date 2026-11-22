@@ -52,6 +52,7 @@ pipeline {
 
         
 
+
 stage('Build Docker Image') {
     steps {
         bat '''
@@ -59,7 +60,7 @@ stage('Build Docker Image') {
             set "DOCKER=C:\\Users\\nadri\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe"
 
             if not exist "%DOCKER%" (
-                echo Docker.exe ei loydy annetusta polusta
+                echo Docker.exe ei loydy
                 exit /b 1
             )
 
