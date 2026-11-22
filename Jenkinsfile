@@ -43,12 +43,14 @@ pipeline {
             credentialsId: 'SONAR_TOKEN',
             variable: 'SONAR_TOKEN'
         )]) {
-            bat '''
-                mvn sonar:sonar ^
-                -Dsonar.projectKey=PROJECTNUPPI ^
-                -Dsonar.host.url=http://localhost:9000 ^
-                -Dsonar.token=%SONAR_TOKEN%
-            '''
+            withSonarQubeEnv('SonarQubeServer') {
+                bat '''
+                    mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar ^
+                    -Dsonar.projectKey=PROJECTNUPPI ^
+                    -Dsonar.projectName=BMI_Cal ^
+                    -Dsonar.token=%SONAR_TOKEN%
+                '''
+            }
         }
     }
 }
