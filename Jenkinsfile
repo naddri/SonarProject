@@ -2,18 +2,18 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'   // Must match the name configured in Jenkins Global Tool Configuration
+        maven 'maven'   // Must match the name configured in Jenkins Global Tool Configuration
     }
 
     environment {
         // these are the environment variables (Amir's machine) that will be used in the pipeline
        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
-       JAVA_HOME = 'C:\\Program Files\\Java\\jdk-21'  // Adjust to your actual JDK path
+       JAVA_HOME = 'C:\\Program Files\\Java\\jdk-21.0.12.1'
 
 
         SONARQUBE_SERVER = 'XXXXX'
         SONAR_TOKEN = credentials('XXXXX') //make sure a right token is selected
-        DOCKERHUB_CREDENTIALS_ID = 'XXXX'
+        DOCKERHUB_CREDENTIALS_ID = 'naddri'
         DOCKERHUB_REPO = 'XXXX/bmi_3013_OMANIMI'
         DOCKER_IMAGE_TAG = 'latest'
     }
@@ -21,7 +21,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'YOUR own project github repo'
+                git branch: 'master', url: 'https://github.com/naddri/SonarProject'
             }
         }
 
