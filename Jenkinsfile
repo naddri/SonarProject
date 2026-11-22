@@ -12,8 +12,8 @@ pipeline {
 
 
         SONARQUBE_SERVER = 'XXXXX'
-        SONAR_TOKEN = credentials('XXXXX') //make sure a right token is selected
-        DOCKERHUB_CREDENTIALS_ID = 'naddri'
+        SONAR_TOKEN = credentials('sqa_397010f64a6ac64990d42ebbecfb285d2fe3cb4b') //make sure a right token is selected
+        DOCKERHUB_CREDENTIALS_ID = 'XXXXX'
         DOCKERHUB_REPO = 'XXXX/bmi_3013_OMANIMI'
         DOCKER_IMAGE_TAG = 'latest'
     }
