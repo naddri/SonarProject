@@ -51,17 +51,30 @@ pipeline {
         }
 
         
+
 stage('Build Docker Image') {
     steps {
-        bat 'where docker'
-        bat 'docker --version'
-        bat 'docker info'
+        bat '''
+            @echo off
+            set "DOCKER=C:\\Users\\nadri\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe"
 
-        script {
-            docker.build("${DOCKERHUB_REPO}:${DOCKER_IMAGE_TAG}")
-        }
+            if not exist "%DOCKER%" (
+                echo Docker.exe ei loydy annetusta polusta
+                exit /b 1
+            )
+
+            "%DOCKER%" --version
+            if errorlevel 1 exit /b 1
+
+            "%DOCKER%" info
+            if errorlevel 1 exit /b 1
+
+            "%DOCKER%" build -t "%DOCKERHUB_REPO%:%DOCKER_IMAGE_TAG%" .
+            if errorlevel 1 exit /b 1
+        '''
     }
 }
+
 
 
         stage('Push Docker Image to Docker Hub') {
