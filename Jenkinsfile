@@ -8,7 +8,7 @@ pipeline {
     environment {
         // these are the environment variables (Amir's machine) that will be used in the pipeline
        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
-        JAVA_HOME = 'C:\Program Files\Java\jdk-27'
+        JAVA_HOME = 'C:/Program Files/Java/jdk-27'
 
 
         SONARQUBE_SERVER = 'XXXXX'
