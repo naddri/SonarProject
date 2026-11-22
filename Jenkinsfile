@@ -45,7 +45,7 @@ pipeline {
         )]) {
             bat '''
                 mvn sonar:sonar ^
-                -Dsonar.projectKey=demo1 ^
+                -Dsonar.projectKey=PROJECTNUPPI ^
                 -Dsonar.host.url=http://localhost:9000 ^
                 -Dsonar.token=%SONAR_TOKEN%
             '''
