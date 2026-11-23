@@ -11,10 +11,10 @@ pipeline {
         JAVA_HOME = 'C:/Program Files/Java/jdk-27'
 
 
-        SONARQUBE_SERVER = 'XXXXX'
-        SONAR_TOKEN = credentials('XXXXX') //make sure a right token is selected
-        DOCKERHUB_CREDENTIALS_ID = 'naddri'
-        DOCKERHUB_REPO = 'XXXX/bmi_3013_rafi'
+        SONARQUBE_SERVER = 'SonarQubeServer'
+        SONAR_TOKEN = credentials('') //make sure a right token is selected
+        DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
+        DOCKERHUB_REPO = 'naddri/bmi_3013_rafi'
         DOCKER_IMAGE_TAG = 'latest'
     }
 
